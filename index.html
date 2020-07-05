@@ -1,0 +1,105 @@
+<!DOCTYPE html><html><head>
+    <script src="p5.js"></script>
+    <script src="p5.dom.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+<script src="./p5.play.js"></script>
+<script src="voterid.js"></script>
+<script src="voting.js"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDugqvcz9eOv1t409dtzYUHwm1fZNTK7No",
+    authDomain: "a-survey-to-bring-about-fcdbe.firebaseapp.com",
+    databaseURL: "https://a-survey-to-bring-about-fcdbe.firebaseio.com",
+    projectId: "a-survey-to-bring-about-fcdbe",
+    storageBucket: "a-survey-to-bring-about-fcdbe.appspot.com",
+    messagingSenderId: "516563105044",
+    appId: "1:516563105044:web:b20b0e507e2989d8d4be01"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+
+  </head>
+  <body>
+      <script src="sketch.js"></script>
+
+      <form onsubmit="submitform(event)">
+        <div class="container">
+          <label for="">Survey Form</label>
+          <p>Q1:Do you think we need to have free lunch meals in our school canteen for the kids who are very poor?</p>
+          
+          <label class="container">Yes
+            <input name="q1" id="q1" type="radio" value="Yes" >
+            <span class="checkmark"></span>
+          </label>
+          
+          <label class="container">No
+            <input name="q1" id="q1" type="radio" value="No">
+            <span class="checkmark"></span>
+          </label>
+
+          <p>Q2:Would you be willing to contribute a small amount every month for such a program?</p>
+          
+          <label class="container">Yes
+            <input name="q2" id="q2" type="radio" value="Yes">
+            <span class="checkmark"></span>
+          </label>
+          
+          <label class="container">No
+            <input name="q2" id="q2" type="radio" value="No">
+            <span class="checkmark"></span>
+          </label>
+          
+          <p><input id="email" type="email" placeholder="Email "></p>
+
+          <p><input type="submit"></p>
+
+        </div>
+        
+
+
+      </form>
+
+      <script>
+
+        function submitform(e){
+
+          e.preventDefault();
+          
+          var email = document.getElementById("email").value
+       
+          var q1 = document.querySelector('input[name="q1"]:checked').value;
+
+          var q2 = document.querySelector('input[name="q2"]:checked').value;
+          
+          
+          database = firebase.database();
+
+          console.log(database);
+
+          database.ref('/').update({
+            email: 'a@gmail.com', 
+
+          });
+
+          }
+
+      </script>
+  
+
+</body></html>
